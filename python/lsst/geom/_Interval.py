@@ -19,13 +19,31 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+__all__ = ["IntervalI"]
 
-from ._geom import *
-from ._Angle import *
-from ._coordinates import *
-from ._SpherePoint import *
-from ._Interval import *
+import numpy as np
 
-from . import testUtils
+from lsst.utils import continueClass
+from ._geom import IntervalI
 
-from .version import *
+
+@continueClass  # noqa: F811
+class IntervalI:
+
+    def __iter__(self):
+        return iter(range(self.begin, self.end))
+
+    def arange(self, dtype=np.int32):
+        """Return an array containing all points in the interval.
+
+        Parameters
+        ----------
+        dtype : convertible to `numpy.dtype`
+            The data type of the returned arrays.
+
+        Returns
+        -------
+        points : `numpy.ndarray`
+            1-d array with `size == self.size` containing points.
+        """
+        return np.arange(self.begin, self.end, 1, dtype=dtype)
