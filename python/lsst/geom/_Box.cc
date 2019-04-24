@@ -49,6 +49,7 @@ void wrapBox(utils::python::WrapperCollection & wrappers) {
                     "invert"_a = true);
             cls.def(py::init<Point2I const &, Extent2I const &, bool>(), "corner"_a, "dimensions"_a,
                     "invert"_a = true);
+            cls.def(py::init<IntervalI const &, IntervalI const &>(), "x"_a, "y"_a);
             cls.def(py::init<Box2D const &, Box2I::EdgeHandlingEnum>(), "other"_a,
                     "edgeHandling"_a = Box2I::EXPAND);
             cls.def(py::init<Box2I const &>(), "other"_a);
@@ -130,6 +131,7 @@ void wrapBox(utils::python::WrapperCollection & wrappers) {
                     "invert"_a = true);
             cls.def(py::init<Point2D const &, Extent2D const &, bool>(), "corner"_a, "dimensions"_a,
                     "invert"_a = true);
+            cls.def(py::init<IntervalD const &, IntervalD const &>(), "x"_a, "y"_a);
             cls.def(py::init<Box2I const &>());
             cls.def(py::init<Box2D const &>());
 
@@ -150,6 +152,8 @@ void wrapBox(utils::python::WrapperCollection & wrappers) {
             cls.def("getWidth", &Box2D::getWidth);
             cls.def("getHeight", &Box2D::getHeight);
             cls.def("getArea", &Box2D::getArea);
+            cls.def("getX", &Box2D::getX);
+            cls.def("getY", &Box2D::getY);
             cls.def("getCenter", &Box2D::getCenter);
             cls.def("getCenterX", &Box2D::getCenterX);
             cls.def("getCenterY", &Box2D::getCenterY);
